@@ -19,7 +19,10 @@ search( :users, "shell:*zsh" ).each do |u|
     source "zshrc.erb"
     owner user_id
     group user_id
-    variables( :theme => ( theme || node[:ohmyzsh][:theme] ))
+    variables(
+      :theme => ( theme || node[:ohmyzsh][:theme] ),
+      :plugins => node[:ohmyzsh][:plugins]
+    )
     action :create_if_missing
     only_if { ::File.exists?("/home/#{user_id}") }
   end
