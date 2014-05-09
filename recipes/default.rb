@@ -43,7 +43,7 @@ search( :users, "shell:*zsh AND NOT action:remove" ).each do |u|
       :theme => ( theme || node[:ohmyzsh][:theme] ),
       :plugins => node[:ohmyzsh][:plugins]
     )
-    action :create_if_missing
+    action :create
     only_if { ::File.exists?("/home/#{user_id}") }
   end
 end
